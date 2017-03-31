@@ -5,6 +5,7 @@ import java.util.List;
 import org.sonar.plugins.java.api.JavaCheck;
 
 import com.google.common.collect.ImmutableList;
+import com.readdle.fluix.plugin.rules.MissingStepDefinitionRule;
 import com.readdle.fluix.plugin.rules.UndocumentedStepRule;
 
 public class FluixRulesList {
@@ -17,7 +18,9 @@ public class FluixRulesList {
     }
 
     private static List<Class<? extends JavaCheck>> getJavaChecks() {
-        return ImmutableList.<Class<? extends JavaCheck>> builder().add(UndocumentedStepRule.class).build();
+        return ImmutableList.<Class<? extends JavaCheck>>builder()
+                .add(UndocumentedStepRule.class, MissingStepDefinitionRule.class)
+                .build();
     }
 
     private static List<Class<? extends JavaCheck>> getJavaTestChecks() {

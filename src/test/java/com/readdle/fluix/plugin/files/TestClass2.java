@@ -2,7 +2,7 @@ package com.readdle.fluix.plugin.files;
 
 import cucumber.api.java.en.And;
 
-public class TestClass1 {
+public class TestClass2 {
 
     /**
      * Compliant method
@@ -10,31 +10,31 @@ public class TestClass1 {
      * @step. ^step with Javadoc$
      */
     @And("^step with Javadoc$")
-    public boolean stepWithJavadoc() {
+    public boolean stepWithStepDefinition() {
         return true;
     }
 
-    @And("^step without Javadoc$") // Noncompliant
+    @And("^step without Javadoc$")
     public int stepWithoutJavadoc() {
         return 0;
     }
 
     /**
-     *
+     * This step without step definition
      *
      */
-    @And("^step with wrong Javadoc$") // Noncompliant
+    @And("^step without step definition") // Noncompliant
     public boolean stepWithWrongJavadoc() {
         return false;
     }
 
-    public void notStep() {
-        int a = 1;
-    }
-
-    @Deprecated
-    public Object methodWithOtherAnnotation() {
-        return new Object();
+    /**
+     *
+     * @step,
+     */
+    @And("^step without step definition") // Noncompliant
+    public boolean stepWithWrongStepDefinition() {
+        return false;
     }
 
 }

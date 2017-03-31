@@ -19,16 +19,16 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.readdle.fluix.plugin.FluixQualityProfile;
 
 @Rule(
-        key = "com.readdle.fluix.plugin.rules.UndocumentedStepRule",
-        name = "Cucumber step should have a Javadoc",
-        description = "Each Cucumber step in 'Fluix Automation' project should have a Javadoc",
+        key = "com.readdle.fluix.plugin.rules.MissingStepDefinitionRule",
+        name = "Cucumber step should have a Javadoc with step definition",
+        description = "Each Cucumber step in 'Fluix Automation' project should have a Javadoc with step definition",
         priority = Priority.MAJOR,
         tags = { "custom", "bad-practice" }
 )
 @SqaleSubCharacteristic(RulesDefinition.SubCharacteristics.UNDERSTANDABILITY)
 @BelongsToProfile(title = FluixQualityProfile.PROFILE_NAME, priority = Priority.MAJOR)
 @SqaleConstantRemediation("3min")
-public class UndocumentedStepRule extends BaseTreeVisitor implements JavaFileScanner {
+public class MissingStepDefinitionRule extends BaseTreeVisitor implements JavaFileScanner {
 
     private JavaFileScannerContext context;
 
@@ -46,9 +46,10 @@ public class UndocumentedStepRule extends BaseTreeVisitor implements JavaFileSca
             if ("And".equals(annotation.annotationType().toString())) {
                 String methodJavadoc = PublicApiChecker.getApiJavadoc(tree);
 
-                if (StringUtils.isEmpty(methodJavadoc)
-                        || StringUtils.isEmpty(methodJavadoc.replace("/**", "").replace("*/", "").replaceAll("\\*", "").trim())) {
-                    context.reportIssue(this, tree, "Add the missing Javadoc for Cucumber step.");
+                if (StringUtils.isNotEmpty(methodJavadoc)
+                        && StringUtils.isNotEmpty(methodJavadoc.replace("/**", "").replace("*/", "").replaceAll("\\*", "").trim())
+                        && !methodJavadoc.contains("@step.")) {
+                    context.reportIssue(this, tree, "Add step definition to Javadoc.");
                 }
             }
         }

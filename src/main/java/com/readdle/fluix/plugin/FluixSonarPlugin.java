@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.sonar.api.SonarPlugin;
 
+import com.readdle.fluix.plugin.rules.MissingStepDefinitionRule;
 import com.readdle.fluix.plugin.rules.UndocumentedStepRule;
 
 public class FluixSonarPlugin extends SonarPlugin {
@@ -13,6 +14,7 @@ public class FluixSonarPlugin extends SonarPlugin {
     public List getExtensions() {
         return Arrays.asList(
                 UndocumentedStepRule.class,
+                MissingStepDefinitionRule.class,
 
                 FluixQualityProfile.class,
                 CustomRulesDefinition.class,

@@ -8,8 +8,10 @@ import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RuleAnnotationUtils;
 import org.sonar.api.rules.RuleFinder;
+import org.sonar.api.rules.RulePriority;
 import org.sonar.api.utils.ValidationMessages;
 
+import com.readdle.fluix.plugin.rules.MissingStepDefinitionRule;
 import com.readdle.fluix.plugin.rules.UndocumentedStepRule;
 
 public class FluixQualityProfile extends ProfileDefinition {
@@ -26,6 +28,7 @@ public class FluixQualityProfile extends ProfileDefinition {
     public RulesProfile createProfile(ValidationMessages validationMessages) {
         Collection<Class> ruleList = new ArrayList<>();
         ruleList.add(UndocumentedStepRule.class);
+        ruleList.add(MissingStepDefinitionRule.class);
 
         RulesProfile profile = RulesProfile.create(PROFILE_NAME, "java");
 
