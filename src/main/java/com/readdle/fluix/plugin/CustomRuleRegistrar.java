@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.sonar.plugins.java.api.CheckRegistrar;
 import org.sonar.plugins.java.api.JavaCheck;
 
+import com.readdle.fluix.plugin.rules.CorrectStepDefinitionRule;
 import com.readdle.fluix.plugin.rules.MissingStepDefinitionRule;
 import com.readdle.fluix.plugin.rules.UndocumentedStepRule;
 
@@ -21,7 +22,8 @@ public class CustomRuleRegistrar implements CheckRegistrar {
     private static Class<? extends JavaCheck>[] checkClasses() {
         return new Class[] {
                 UndocumentedStepRule.class,
-                MissingStepDefinitionRule.class
+                MissingStepDefinitionRule.class,
+                CorrectStepDefinitionRule.class
         };
     }
 
