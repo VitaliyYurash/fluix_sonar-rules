@@ -49,7 +49,6 @@ public class CorrectStepDefinitionRule extends BaseTreeVisitor implements JavaFi
         for (AnnotationTree annotation : methodAnnotations) {
             if (!"And".equals(annotation.annotationType().toString())
                     || StringUtils.isEmpty(javadoc)
-//                    TODO: create new issue
                     || !LiteralTree.class.isAssignableFrom(annotation.arguments().get(0).getClass())) {
                 continue;
             }
