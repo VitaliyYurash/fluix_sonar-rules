@@ -12,6 +12,13 @@ import com.readdle.fluix.plugin.rules.UndocumentedStepRule;
 public class FluixSonarPlugin extends SonarPlugin {
 
     @Override
+    // aaaaaaa
+    /*
+     *bbb
+     *bbb
+     *bbb
+     *bbb
+     */
     public List getExtensions() {
         return Arrays.asList(
                 UndocumentedStepRule.class,
